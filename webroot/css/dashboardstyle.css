@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+
+/* =========================
+   GLOBAL RESET + SCROLL
+========================= */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-size: clamp(14px, 1.2vw, 18px);
+}
+
+/* Hide default header */
+#header, nav.top-nav, .navbar, header {
+    display: none !important;
+}
+
+/* =========================
+   LAYOUT WRAPPER
+========================= */
+.dashboard-wrapper {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+
+    overflow: auto; /* BOTH H + V SCROLL */
+
+    transition: all 0.3s ease;
+}
+
+/* =========================
+   SIDEBAR (COLLAPSIBLE)
+========================= */
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+
+    background: var(--brand-green);
+    display: flex;
+    flex-direction: column;
+
+    transition: width 0.3s ease;
+    overflow: hidden;
+}
+
+/* COLLAPSED STATE */
+.sidebar.collapsed {
+    width: 70px;
+}
+
+.sidebar-header {
+    padding: 28px 20px 24px;
+    background: var(--brand-green-dark);
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-logo {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.sidebar-title {
+    margin: 0;
+    font-family: 'Jockey One', sans-serif;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Hide text when collapsed */
+.sidebar.collapsed .sidebar-title,
+.sidebar.collapsed .nav-link {
+    font-size: 0;
+    opacity: 0;
+}
+
+/* =========================
+   NAV LINKS
+========================= */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 0;
+    flex: 1;
+}
+
+.nav-link {
+    padding: 14px 22px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    border-left-color: #fff;
+}
+
+.nav-link.active {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border-left-color: #fff;
+    font-weight: bold;
+}
+
+.logout {
+    margin-top: auto;
+    color: #f87171 !important;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.main-content {
+    flex: 1;
+    padding: 40px 44px;
+    background: var(--bg-light);
+
+    min-width: max-content; /* allow horizontal expansion */
+    overflow: visible;
+}
+
+/* =========================
+   HEADER
+========================= */
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-title {
+    margin: 0 0 4px;
+    font-family: 'Jockey One', sans-serif;
+    font-size: clamp(24px, 3vw, 48px);
+    color: var(--brand-green);
+}
+
+.page-subtitle {
+    margin: 0;
+    font-size: clamp(14px, 1.5vw, 20px);
+    color: var(--text-muted);
+}
+
+/* =========================
+   TABLE WRAPPER (HORIZONTAL SCROLL SAFE)
+========================= */
+.enquiries-table-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+
+    overflow-x: auto;
+    overflow-y: visible;
+
+    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+}
+
+/* =========================
+   TABLE
+========================= */
+.enquiries-table {
+    width: 100%;
+    min-width: 900px; /* prevents breaking */
+    border-collapse: collapse;
+
+    font-size: clamp(12px, 1vw, 16px);
+}
+
+/* STICKY HEADER */
+.enquiries-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    background: var(--brand-green);
+    color: #fff;
+
+    padding: 14px 18px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* TABLE BODY */
+.enquiries-table tbody tr {
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.enquiries-table tbody tr:hover {
+    background: #f0f7f0;
+}
+
+.enquiries-table td {
+    padding: 14px 18px;
+    vertical-align: middle;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+.view-btn {
+    display: inline-block;
+    padding: 6px 14px;
+    background: var(--brand-green);
+    color: #fff;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.view-btn:hover {
+    background: var(--brand-green-dark);
+}
+
+/* =========================
+   PAGINATION
+========================= */
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: absolute;
+        left: -240px;
+        height: 100vh;
+        z-index: 999;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    .enquiries-table {
+        min-width: 700px;
+    }
+}
